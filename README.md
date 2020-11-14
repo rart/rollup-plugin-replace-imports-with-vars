@@ -1,3 +1,11 @@
+[npm]: https://img.shields.io/npm/v/rollup-plugin-replace-imports-with-vars
+[npm-url]: https://www.npmjs.com/package/rollup-plugin-replace-imports-with-vars
+[size]: https://packagephobia.now.sh/badge?p=rollup-plugin-replace-imports-with-vars
+[size-url]: https://packagephobia.now.sh/result?p=rollup-plugin-replace-imports-with-vars
+
+[![npm][npm]][npm-url]
+[![size][size]][size-url]
+
 # rollup-plugin-replace-imports-with-vars
 
 Say you're using the [dynamic `import()`](https://v8.dev/features/dynamic-import) on your web app to load some other lib file. Your lib project 

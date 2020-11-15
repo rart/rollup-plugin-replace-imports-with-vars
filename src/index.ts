@@ -13,7 +13,7 @@ export interface ReplaceImportsOptions {
    * @default {}
    * */
   replacementLookup: {
-    [key: string]: '';
+    [key: string]: string;
   }
 }
 

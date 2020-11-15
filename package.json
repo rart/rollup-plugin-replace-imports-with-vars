@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-replace-imports-with-vars",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Replace 'import { x } from y' with 'const|let|var { x } = y'",
   "main": "dist/index.js",
   "module": "dist/index.es.js",

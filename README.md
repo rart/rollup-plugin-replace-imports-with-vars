@@ -28,19 +28,10 @@ assignment syntax, so if you need to support browsers without that capability, y
 ## Sample
 
 ```js
-// Original
-import { createElement } from 'react';
-import { makeStyles, createStyles, Typography } from '@material-ui/core';
-import { useIntl } from 'react-intl';
-import jss from 'jss';
-
-// ... 
-```
-
-```js
 // rollup.config.js
 
 const globals = {
+  'jss': 'window.libs.jss',
   'react': 'window.libs.React',
   'react-dom': 'window.libs.ReactDOM',
   '@material-ui/core': 'window.libs.MaterialUI'
@@ -58,7 +49,17 @@ export default {
 ```
 
 ```js
-// transformed
+// Original code
+import { createElement } from 'react';
+import { makeStyles, createStyles, Typography } from '@material-ui/core';
+import { useIntl } from 'react-intl';
+import jss from 'jss';
+
+// ... 
+```
+
+```js
+// Transformed output
 var { createElement } = window.libs.React;
 var { makeStyles, createStyles, Typography } = window.libs.MaterialUI;
 var { useIntl } = window.libs.ReactIntl;

@@ -36,20 +36,23 @@ export default function replaceImports(options: ReplaceImportsOptions): Plugin {
           const pieces = [];
           const allAsX = trimmedImports.match(/\*\s+as\s+([\w$]*)/g);
           const individualExports = trimmedImports.match(/{.*?}/g);
-          const rest = trimmedImports.replace(/({.*?})|(?:\*\s+as\s+([\w$]*))|[,\s]/g, '');
+          const defaultExports = trimmedImports.replace(/({.*?})|(?:\*\s+as\s+([\w$]*))|[,\s]/g, '');
           if (allAsX) {
-            pieces.push(`${varType} ${allAsX} = ${source}`);
+            allAsX.forEach((chunk) => pieces.push(`${varType} ${chunk} = ${source}`));
           }
           if (individualExports) {
-            pieces.push(`${varType} ${individualExports} = ${source}`);
+            individualExports.forEach(
+              (chunk) =>
+                pieces.push(`${varType} ${chunk.replace(/([a-zA-Z0-9$_]+) as ([a-zA-Z0-9$_]+)/g, '$1: $2')} = ${source}`)
+            );
           }
-          if (rest) {
+          if (defaultExports) {
             pieces.push(
-              `${varType} ${rest} = ${source} && Object.prototype.hasOwnProperty.call(${source}, 'default') ? ${source}['default'] : ${source}`
+              `${varType} ${defaultExports} = ${source} && Object.prototype.hasOwnProperty.call(${source}, 'default') ? ${source}['default'] : ${source}`
             );
           }
           if (pieces.length) {
-            return pieces.join(';');
+            return pieces.join(';\n');
           } else {
             return string;
           }

@@ -1,5 +1,6 @@
 import pkg from './package.json';
 import typescript from 'rollup-plugin-typescript2';
+import prettier from 'rollup-plugin-prettier';
 
 export default {
   input: './src/index.ts',
@@ -11,6 +12,12 @@ export default {
     typescript({
       tsconfig: 'tsconfig.json',
       outDir: './dist'
+    }),
+    prettier({
+      tabWidth: 2,
+      singleQuote: true,
+      printWidth: 100,
+      parser: 'babel'
     })
   ]
 };

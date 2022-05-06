@@ -1,5 +1,10 @@
 # Change log
 
+## v1.1.0
+- Fix `* as X` handling
+- Add replacement via RegExp matching and function processor for source determination
+- Internal updates (tsconfig, 
+
 ## v1.0.2
 - Fix `as` statement in imports when translated to a var destructing
 - Add pretty formatting to dist :)
